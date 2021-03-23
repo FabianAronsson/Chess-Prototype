@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chess"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Chess Prototype" Height="1200" Width="1200"
+        FontSize="40">
+    
     <Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="Board">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+<Grid.Background>
+                <ImageBrush ImageSource="../../../ChessImages/Board.png"/>     
+    </Grid.Background>
+            
 
+        </Grid>
     </Grid>
 </Window>

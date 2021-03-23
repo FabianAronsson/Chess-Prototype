@@ -6,4 +6,38 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="board.png" />
+    <None Remove="ChessImages\Bishop.png" />
+    <None Remove="ChessImages\Board.png" />
+    <None Remove="ChessImages\King.png" />
+    <None Remove="ChessImages\Knight.png" />
+    <None Remove="ChessImages\Pawn.png" />
+    <None Remove="ChessImages\Queen.png" />
+    <None Remove="ChessImages\Rook.png" />
+    <None Remove="ChessImages\wBishop.png" />
+    <None Remove="ChessImages\wKing.png" />
+    <None Remove="ChessImages\wKnight.png" />
+    <None Remove="ChessImages\wPawn.png" />
+    <None Remove="ChessImages\wQueen.png" />
+    <None Remove="ChessImages\wRook.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="board.png" />
+    <Resource Include="ChessImages\Bishop.png" />
+    <Resource Include="ChessImages\Board.png" />
+    <Resource Include="ChessImages\King.png" />
+    <Resource Include="ChessImages\Knight.png" />
+    <Resource Include="ChessImages\Pawn.png" />
+    <Resource Include="ChessImages\Queen.png" />
+    <Resource Include="ChessImages\Rook.png" />
+    <Resource Include="ChessImages\wBishop.png" />
+    <Resource Include="ChessImages\wKing.png" />
+    <Resource Include="ChessImages\wKnight.png" />
+    <Resource Include="ChessImages\wPawn.png" />
+    <Resource Include="ChessImages\wQueen.png" />
+    <Resource Include="ChessImages\wRook.png" />
+  </ItemGroup>
+
 </Project>
