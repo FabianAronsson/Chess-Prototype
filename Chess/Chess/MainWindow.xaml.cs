@@ -21,14 +21,90 @@ namespace Chess
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<ImageBrush> WhiteImages = new List<ImageBrush>();
-        public List<ImageBrush> BlackImages = new List<ImageBrush>();
+        public List<BitmapImage> WhiteImages = new List<BitmapImage>();
+        public List<BitmapImage> BlackImages = new List<BitmapImage>();
+        public MoveModel moveModel = new MoveModel();
         public MainWindow()
         {
             InitializeComponent();
             SetImages();
             CreatePieces();
         }
+
+        private void GetPositionOfButton(object sender, RoutedEventArgs e)
+        {
+            if (e.Source is Button button)
+            {
+                
+                if (!moveModel.pieceSelected)
+                {
+                    //get coordinate of piece
+                    moveModel.srcX = Grid.GetColumn(button);
+                    moveModel.srcY = Grid.GetRow(button);
+                    //save piece
+                    button.Background = Brushes.Red;
+                    moveModel.piece = button;
+                    moveModel.pieceName = button.Tag.ToString();
+                    moveModel.pieceSelected = true;
+                }
+                else
+                {
+                    //get coordinate of destination
+                    moveModel.destX = Grid.GetColumn(button);
+                    moveModel.destY = Grid.GetRow(button);
+                    //remove destination piece
+                    Board.Children.Remove(button);
+                    //remove the source piece
+                    Board.Children.Remove(moveModel.piece);
+                    //create an empty square
+                    Button square = new Button()
+                    {
+                        Tag = "square",
+                        BorderThickness = new Thickness(0),
+                        Background = Brushes.Transparent,
+                    };
+                    square.Click += new RoutedEventHandler(GetPositionOfButton);
+
+                    //Set coordinate of square
+                    Grid.SetColumn(square, moveModel.srcX);
+                    Grid.SetRow(square, moveModel.srcY);
+                    Board.Children.Add(square);
+                    
+                    //Set source piece to destination coordinate
+                    moveModel.piece.Background = Brushes.Transparent;
+                    Grid.SetColumn(moveModel.piece, moveModel.destX);
+                    Grid.SetRow(moveModel.piece, moveModel.destY);
+                    Board.Children.Add(moveModel.piece);
+                    moveModel.pieceSelected = false;
+                    
+                    if(button.Tag.ToString() ==  "bPawn" ) //should be variable for black and white, not necessarily a specific piece, as it is obvious with correct naming, e.g. wRook, bRook
+                    {//Crashes at the moment due to only being usable on pawns, needs fixing. For example a boolean checking if it is white's or black's turn. Each piece needs a specific tag.
+                        PlayChessSound("capture");
+                        
+                    }
+                    else
+                    {
+                        PlayChessSound("nan");
+                    }
+                }
+            }
+        }
+
+        public void PlayChessSound(string typeOfMove)
+        {
+            if(typeOfMove == "capture")
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../../ChessFX/Capture.wav");
+                player.Play();
+            }
+            else
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer("../../../ChessFX/Move.wav");
+                player.Play();
+            }
+            
+        }
+
 
         public void ChessGame()
         {
@@ -50,24 +126,18 @@ namespace Chess
             throw new NotImplementedException();
         }
 
-     
+
         public void GetLegalMoves()
         {
-           
+
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (e.Source is Button button)
-            {
-                var vaulue = button.
-            }
-        }
+
 
 
         public void CreatePieces()
         {
-            
+
             int indexForWhite = 0;
             int indexForBlack = 0;
             //Black Pieces
@@ -79,34 +149,60 @@ namespace Chess
                     {
                         Pieces.Pawn pawn = new Pieces.Pawn
                         {
-                            pawnName = "bPawn",
-                            xPosition = j,
-                            yPosition = 1
-                            
-                        };
+                            Tag = "bPawn",
+                            Content = new Image
+                            {
+                                Source = BlackImages[8],
+                                VerticalAlignment = VerticalAlignment.Center
+                            },
+                            Background = Brushes.Transparent,
+                            BorderThickness = new Thickness(0),
 
-                        Pawn piece = new Button
-                        {
-                            Background = BlackImages[8],
-                            BorderThickness = new Thickness(0)
+
                         };
-                        Grid.SetRow(piece, 1);
-                        Grid.SetColumn(piece, j);
-                        Board.Children.Add(piece);
+                        pawn.Click += new RoutedEventHandler(GetPositionOfButton);
+                        Grid.SetRow(pawn, 1);
+                        Grid.SetColumn(pawn, j);
+                        Board.Children.Add(pawn);
                     }
                 }
                 else
                 {
                     Button piece = new Button
                     {
-                        Background = BlackImages[indexForBlack],
+                        Content = new Image
+                        {
+                            Source = BlackImages[indexForBlack],
+                            VerticalAlignment = VerticalAlignment.Center
+                        },
+                        Background = Brushes.Transparent,
                         BorderThickness = new Thickness(0)
                     };
+                    piece.Click += new RoutedEventHandler(GetPositionOfButton);
                     Grid.SetRow(piece, 0);
                     Grid.SetColumn(piece, i);
                     Board.Children.Add(piece);
                     indexForBlack++;
                 }
+            }
+
+            //Empty Squares
+            for (int i = 2; i < 6; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Button square = new Button()
+                    {
+                        Tag = "square",
+                        BorderThickness = new Thickness(0),
+                        Background = Brushes.Transparent
+                    };
+                    square.Click += new RoutedEventHandler(GetPositionOfButton);
+                    Grid.SetRow(square, i);
+                    Grid.SetColumn(square, j);
+                    Board.Children.Add(square);
+                }
+
             }
 
             //White Pieces
@@ -117,23 +213,35 @@ namespace Chess
                     for (int j = 0; j < 8; j++)
                     {
 
-                        Pawn piece = new Pawn
+                        Pieces.Pawn pawn = new Pieces.Pawn
                         {
-                            Background = WhiteImages[8],
+                            Tag = "pawn",
+                            Content = new Image { 
+                                Source = WhiteImages[8],
+                                VerticalAlignment = VerticalAlignment.Center
+                            },
+                            Background = Brushes.Transparent,
                             BorderThickness = new Thickness(0)
                         };
-                        Grid.SetRow(piece, 6);
-                        Grid.SetColumn(piece, j);
-                        Board.Children.Add(piece);
+                        pawn.Click += new RoutedEventHandler(GetPositionOfButton);
+                        Grid.SetRow(pawn, 6);
+                        Grid.SetColumn(pawn, j);
+                        Board.Children.Add(pawn);
                     }
                 }
                 else
                 {
                     Button piece = new Button
                     {
-                        Background = WhiteImages[indexForWhite],
+                        Content = new Image
+                        {
+                            Source = WhiteImages[indexForWhite],
+                            VerticalAlignment = VerticalAlignment.Center
+                        },
+                        Background = Brushes.Transparent,
                         BorderThickness = new Thickness(0)
                     };
+                    piece.Click += new RoutedEventHandler(GetPositionOfButton);
                     Grid.SetRow(piece, 7);
                     Grid.SetColumn(piece, indexForWhite);
                     Board.Children.Add(piece);
@@ -159,19 +267,18 @@ namespace Chess
                 "../../../ChessImages/Knight.png", "../../../ChessImages/Rook.png", "../../../ChessImages/Pawn.png",  };
             for (int i = 0; i < 9; i++)
             {
-                var brush = new ImageBrush();
-                brush.ImageSource = new BitmapImage(new Uri(ImagePathsForWhite[i], UriKind.Relative));
-                WhiteImages.Add(brush);
+               
+                WhiteImages.Add(new BitmapImage(new Uri(ImagePathsForWhite[i], UriKind.Relative)));
 
 
             }
             for (int i = 0; i < 9; i++)
             {
-                var brushForBlack = new ImageBrush();
-                brushForBlack.ImageSource = new BitmapImage(new Uri(ImagePathsForBlack[i], UriKind.Relative));
-                BlackImages.Add(brushForBlack);
+                BlackImages.Add(new BitmapImage(new Uri(ImagePathsForBlack[i], UriKind.Relative)));
             }
         }
+
+       
     }
 }
 
@@ -188,7 +295,10 @@ namespace Chess
 
 //2-Dimensional Array for coordinates of pieces
 
-//Fen-notation, Shredder-FEN notation
+//Fen-notation, Shredder-FEN notation, dictionary
 
 
 //https://codereview.stackexchange.com/questions/213606/chess-move-validator
+
+
+//to do: Check if destination piece is white or black, return true/false

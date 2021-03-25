@@ -7,6 +7,6 @@ namespace Chess
     class ChessModel
     {
         public int MoveCount;
-        public bool playerHasNotWon = true;
+        public bool playerHasWon = false;
     }
 }

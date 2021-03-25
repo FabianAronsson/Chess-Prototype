@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="board.png" />
+    <None Remove="ChessFX\Capture.wav" />
+    <None Remove="ChessFX\Move.wav" />
     <None Remove="ChessImages\Bishop.png" />
     <None Remove="ChessImages\Board.png" />
     <None Remove="ChessImages\King.png" />
@@ -25,6 +27,8 @@
 
   <ItemGroup>
     <Resource Include="board.png" />
+    <Resource Include="ChessFX\Capture.wav" />
+    <Resource Include="ChessFX\Move.wav" />
     <Resource Include="ChessImages\Bishop.png" />
     <Resource Include="ChessImages\Board.png" />
     <Resource Include="ChessImages\King.png" />

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Chess Prototype" Height="500" Width="500"
         FontSize="40">
-    
+
     <Grid>
         <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Name="Board">
             <Grid.ColumnDefinitions>
@@ -30,10 +30,9 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-<Grid.Background>
-                <ImageBrush ImageSource="../../../ChessImages/Board.png"/>     
-    </Grid.Background>
-            
+            <Grid.Background>
+                <ImageBrush ImageSource="./../../ChessImages/Board.png"/>
+            </Grid.Background>
 
         </Grid>
     </Grid>
