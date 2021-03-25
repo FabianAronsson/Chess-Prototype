@@ -30,9 +30,44 @@ namespace Chess
             CreatePieces();
         }
 
+        public void ChessGame()
+        {
+            ChessModel chessValues = new ChessModel();
+            while (true)
+            {
+                WhiteTurn();
+                BlackTurn();
+            }
+        }
+
+        private void BlackTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void WhiteTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+     
+        public void GetLegalMoves()
+        {
+           
+        }
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (e.Source is Button button)
+            {
+                var vaulue = button.
+            }
+        }
+
 
         public void CreatePieces()
         {
+            
             int indexForWhite = 0;
             int indexForBlack = 0;
             //Black Pieces
@@ -42,7 +77,15 @@ namespace Chess
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        Button piece = new Button
+                        Pieces.Pawn pawn = new Pieces.Pawn
+                        {
+                            pawnName = "bPawn",
+                            xPosition = j,
+                            yPosition = 1
+                            
+                        };
+
+                        Pawn piece = new Button
                         {
                             Background = BlackImages[8],
                             BorderThickness = new Thickness(0)
@@ -74,7 +117,7 @@ namespace Chess
                     for (int j = 0; j < 8; j++)
                     {
 
-                        Button piece = new Button
+                        Pawn piece = new Pawn
                         {
                             Background = WhiteImages[8],
                             BorderThickness = new Thickness(0)
