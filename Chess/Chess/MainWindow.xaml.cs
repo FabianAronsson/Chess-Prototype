@@ -133,3 +133,19 @@ namespace Chess
 }
 
 
+//C# (CSharp) IDragSourceAdvisor.IsDraggable Examples https://csharp.hotexamples.com/examples/-/IDragSourceAdvisor/IsDraggable/php-idragsourceadvisor-isdraggable-method-examples.html
+
+//Scan board for legal moves -> save legal move coordinate in list per piece per player -> get legal moves and 
+//display legal  moves to player -> get player move coordinate -> compare to LegalMoveModel.cs -> if player move
+//== any move in LegalMoveModel.cs -> play move, else play sound. 
+
+//Check if played move is a check, if check, play sound and restrict king movement
+
+//MVC, View = xaml, Intermediator = xaml.cs, Controller, Model
+
+//2-Dimensional Array for coordinates of pieces
+
+//Fen-notation, Shredder-FEN notation
+
+
+//https://codereview.stackexchange.com/questions/213606/chess-move-validator
