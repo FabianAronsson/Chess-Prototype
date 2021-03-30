@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Kingen34\\.nuget\\packages\\": {}
+    "C:\\Users\\fabian.aronsson1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skrivbord\\Mapp\\GitHub\\Chess\\Chess\\Chess\\Chess.csproj",
+      "projectUniqueName": "C:\\Users\\fabian.aronsson1\\Desktop\\Skola\\Github\\Chess-Prototype\\Chess\\Chess\\Chess.csproj",
       "projectName": "Chess",
-      "projectPath": "D:\\Skrivbord\\Mapp\\GitHub\\Chess\\Chess\\Chess\\Chess.csproj",
-      "packagesPath": "C:\\Users\\Kingen34\\.nuget\\packages\\",
-      "outputPath": "D:\\Skrivbord\\Mapp\\GitHub\\Chess\\Chess\\Chess\\obj\\",
+      "projectPath": "C:\\Users\\fabian.aronsson1\\Desktop\\Skola\\Github\\Chess-Prototype\\Chess\\Chess\\Chess.csproj",
+      "packagesPath": "C:\\Users\\fabian.aronsson1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fabian.aronsson1\\Desktop\\Skola\\Github\\Chess-Prototype\\Chess\\Chess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Kingen34\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fabian.aronsson1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

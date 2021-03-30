@@ -37,3 +37,4 @@ C:\Users\fabian.aronsson1\Desktop\Skola\Github\Chess-Prototype\Chess\Chess\obj\D
 C:\Users\fabian.aronsson1\Desktop\Skola\Github\Chess-Prototype\Chess\Chess\obj\Debug\netcoreapp3.1\Chess.pdb
 C:\Users\fabian.aronsson1\Desktop\Skola\Github\Chess-Prototype\Chess\Chess\obj\Debug\netcoreapp3.1\Chess.genruntimeconfig.cache
 D:\Skrivbord\Mapp\GitHub\Chess\Chess\Chess\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\fabian.aronsson1\Desktop\Skola\Github\Chess-Prototype\Chess\Chess\obj\Debug\netcoreapp3.1\App.baml

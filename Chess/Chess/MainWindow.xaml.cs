@@ -24,6 +24,9 @@ namespace Chess
         public List<BitmapImage> WhiteImages = new List<BitmapImage>();
         public List<BitmapImage> BlackImages = new List<BitmapImage>();
         public MoveModel moveModel = new MoveModel();
+        public List<string> BlackName = new List<string>() {"R", "K", "B", "Q", "K", "B", "K", "R"};
+        public List<string> WhiteName = new List<string>() { "wR", "wK", "wB", "wQ", "wK", "wB", "wK", "wR" };
+        public Model model = new Model();
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +62,7 @@ namespace Chess
                     //create an empty square
                     Button square = new Button()
                     {
-                        Tag = "square",
+                        Tag = "emptySquare",
                         BorderThickness = new Thickness(0),
                         Background = Brushes.Transparent,
                     };
@@ -76,16 +79,39 @@ namespace Chess
                     Grid.SetRow(moveModel.piece, moveModel.destY);
                     Board.Children.Add(moveModel.piece);
                     moveModel.pieceSelected = false;
-                    
-                    if(button.Tag.ToString() ==  "bPawn" ) //should be variable for black and white, not necessarily a specific piece, as it is obvious with correct naming, e.g. wRook, bRook
-                    {//Crashes at the moment due to only being usable on pawns, needs fixing. For example a boolean checking if it is white's or black's turn. Each piece needs a specific tag.
-                        PlayChessSound("capture");
-                        
+
+
+
+                    //not working correctly
+                    if (model.isWhiteTurn)
+                    {
+                        if (button.Tag.ToString().Equals("emptySquare"))
+                        {
+                            PlayChessSound("nan");
+                        }
+                        else if(!IsWhite(button.Tag.ToString()))
+                            {
+                            PlayChessSound("capture");
+                        }
+                        model.isWhiteTurn = false;
                     }
                     else
                     {
-                        PlayChessSound("nan");
+                        if (button.Tag.ToString().Equals("emptySquare"))
+                        {
+                            PlayChessSound("nan");
+                        }
+                        else if (IsWhite(button.Tag.ToString()))
+                        {
+                            PlayChessSound("capture");
+
+                        }
+                       
+                        model.isWhiteTurn = true;
                     }
+                    //should be variable for black and white, not necessarily a specific piece, as it is obvious with correct naming, e.g. wRook, bRook
+                    //Crashes at the moment due to only being usable on pawns, needs fixing. For example a boolean checking if it is white's or black's turn. Each piece also needs a specific tag.
+                    
                 }
             }
         }
@@ -132,6 +158,19 @@ namespace Chess
 
         }
 
+        public bool IsWhite(string tag)
+        {
+            if (!tag.Equals("emptySquare"))
+            {
+                if (tag.Length != 1)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
 
 
 
@@ -170,6 +209,7 @@ namespace Chess
                 {
                     Button piece = new Button
                     {
+                        Tag = BlackName[indexForBlack],
                         Content = new Image
                         {
                             Source = BlackImages[indexForBlack],
@@ -193,7 +233,7 @@ namespace Chess
                 {
                     Button square = new Button()
                     {
-                        Tag = "square",
+                        Tag = "emptySquare",
                         BorderThickness = new Thickness(0),
                         Background = Brushes.Transparent
                     };
@@ -233,6 +273,7 @@ namespace Chess
                 {
                     Button piece = new Button
                     {
+                        Tag = WhiteName[indexForWhite],
                         Content = new Image
                         {
                             Source = WhiteImages[indexForWhite],
